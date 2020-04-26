@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" NavigationPage.HasNavigationBar="False"
+             x:Class="BurgerSpot.Views.LandingPage">
+
+    <Grid Padding="30" BackgroundColor="Black" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Padding="0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout Spacing="20" HorizontalOptions="Start" VerticalOptions="Center">
+                <Image Source="search.png" Aspect="AspectFit" WidthRequest="15" HeightRequest="15"/>
+                <Image Source="user.png" Aspect="AspectFit" WidthRequest="15" HeightRequest="15"/>
+                <Image Source="cart.png" Aspect="AspectFit" WidthRequest="15" HeightRequest="15"/>
+            </StackLayout>
+            <StackLayout Spacing="0" HorizontalOptions="Center" VerticalOptions="Center">
+                <Label Text="BURGER" TextColor="White" FontFamily="ThemeFont" FontSize="50" HorizontalOptions="Center"/>
+                <Label Text="SPOT" Margin="0,-5,0,0" TextColor="White" Opacity="0.5" FontFamily="LightFont" FontSize="25" 
+                       HorizontalOptions="Center"/>
+            </StackLayout>
+        </Grid>
+        <CollectionView x:Name="burgerList" Margin="0,40,0,0" Grid.Row="1" ItemsSource="{Binding Burgers}" SelectionMode="Single" 
+                        SelectedItem="{Binding SelectedBurger}" VerticalScrollBarVisibility="Never" 
+                        SelectionChangedCommand="{Binding SelectionCommand}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="20" HorizontalItemSpacing="20" Span="2"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" BackgroundColor="#131313" WidthRequest="145" HeightRequest="160">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Image Aspect="AspectFill" Source="{Binding Image}" Margin="10" WidthRequest="125" HeightRequest="110" 
+                               HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Label Grid.Row="1" Text="{Binding Name}" TextColor="#F9B522" FontFamily="ThemeFont" 
+                               VerticalOptions="End" HorizontalOptions="Start"/>
+                        <Label Grid.Row="1" Text="{Binding Price, StringFormat='${0}'}" TextColor="White" FontFamily="ThemeFont"
+                               VerticalOptions="End" HorizontalOptions="End"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.Footer>
+                <Grid HeightRequest="0"/>
+            </CollectionView.Footer>
+        </CollectionView>
+    </Grid>
+</ContentPage>

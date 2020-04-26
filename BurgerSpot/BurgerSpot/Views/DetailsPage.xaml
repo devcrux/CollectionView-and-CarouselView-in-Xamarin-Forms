@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" NavigationPage.HasNavigationBar="False"
+             x:Class="BurgerSpot.Views.DetailsPage">
+
+    <Grid Padding="30" BackgroundColor="Black" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Padding="0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout Spacing="20" HorizontalOptions="Start" VerticalOptions="Center">
+                <Image Source="search.png" Aspect="AspectFit" WidthRequest="15" HeightRequest="15"/>
+                <Image Source="user.png" Aspect="AspectFit" WidthRequest="15" HeightRequest="15"/>
+                <Image Source="cart.png" Aspect="AspectFit" WidthRequest="15" HeightRequest="15"/>
+            </StackLayout>
+            <StackLayout Spacing="0" HorizontalOptions="End" VerticalOptions="Start">
+                <Label Text="BURGER" TextColor="White" FontFamily="ThemeFont" FontSize="25" HorizontalOptions="End"/>
+                <Label Text="SPOT" TextColor="White" Opacity="0.5" FontFamily="LightFont" FontSize="12" HorizontalOptions="End"/>
+            </StackLayout>
+        </Grid>
+        <ScrollView Grid.Row="1" HorizontalOptions="FillAndExpand">
+            <Grid RowSpacing="50" HorizontalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackLayout Spacing="0" HorizontalOptions="Center" VerticalOptions="Start">
+                    <Label Text="{Binding SelectedBurger.Price, StringFormat='${0}'}" TextColor="#F9B522" 
+                           FontFamily="ThemeFont" FontSize="50" HorizontalOptions="Center"/>
+                    <Label Text="LIMITED TIME OFFER!" TextColor="White" Opacity="0.75" FontFamily="LightFont" FontSize="12" 
+                           HorizontalOptions="Center"/>
+                </StackLayout>
+                <CarouselView Grid.Row="1" ItemsSource="{Binding Burgers}" HeightRequest="260" HorizontalOptions="FillAndExpand" 
+                          CurrentItem="{Binding SelectedBurger}" IsScrollAnimated="True" IsSwipeEnabled="True">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalOptions="FillAndExpand">
+                                <Label Text="{Binding Name}" TextColor="White" FontSize="105" FontFamily="ThemeFont" 
+                                       HorizontalOptions="Center"/>
+                                <Image Source="{Binding Image}" Aspect="Fill" Margin="0,-50,0,0" HeightRequest="210" 
+                                       WidthRequest="235" HorizontalOptions="Center" VerticalOptions="End"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <ImageButton Grid.Row="1" Source="left.png" Margin="15,50,0,0" Aspect="Fill" HeightRequest="18" WidthRequest="18" HorizontalOptions="Start" 
+                         VerticalOptions="Center" BackgroundColor="Transparent" Command="{Binding ChangePositionCommand}" CommandParameter="L"/>
+                <ImageButton Grid.Row="1" Source="right.png" Margin="0,50,15,0" Aspect="Fill" HeightRequest="18" WidthRequest="18" HorizontalOptions="End" 
+                         VerticalOptions="Center" BackgroundColor="Transparent" Command="{Binding ChangePositionCommand}" CommandParameter="R"/>
+                <StackLayout Grid.Row="2" Spacing="20" HorizontalOptions="FillAndExpand">
+                    <Label Text="{Binding SelectedBurger.Name, StringFormat='OUR {0} BURGER'}" TextColor="#F9B522" 
+                           FontFamily="ThemeFont" FontSize="25" HorizontalOptions="End"/>
+                    <BoxView BackgroundColor="#F9B522" HeightRequest="2" WidthRequest="45" VerticalOptions="Start" 
+                             HorizontalOptions="End"/>
+                    <Label Text="{Binding SelectedBurger.Description}" TextColor="White" WidthRequest="250" 
+                           FontFamily="LightFont" FontSize="12" HorizontalOptions="End" HorizontalTextAlignment="End"/>
+                    <Button Text="ORDER NOW" TextColor="Black" Padding="20,5" HeightRequest="35" CornerRadius="17" 
+                            BackgroundColor="#F9B522" FontFamily="ThemeFont" HorizontalOptions="End"/>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>
