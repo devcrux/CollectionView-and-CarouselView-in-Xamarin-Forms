@@ -7,4 +7,4 @@ You can watch the video here ➤ https://youtu.be/mbqzKf7HVcQ
 
 This video is beginner-friendly and I advice you to watch the entire video irrespective of your proficiency.
 
-![alt text](https://devcrux.com/wp-content/uploads/burgerapp.gif) 
+![alt text](https://devcrux.com/wp-content/uploads/burgerapp.png) 
